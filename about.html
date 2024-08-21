@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ujicoba</title>
+    <link rel="stylesheet" href="about.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+   <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-bez@1.0.11/src/jquery.bez.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script>
+
+      // GSAP animation setup
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const contentHolderHeight =
+          document.querySelector(".content-holder").offsetHeight;
+        const imgHolderHeight = window.innerHeight;
+        const additionalScrollHeight = window.innerHeight;
+
+        const totalBodyHeight =
+          contentHolderHeight + imgHolderHeight + additionalScrollHeight;
+        document.body.style.height = `${totalBodyHeight}px`;
+
+        // ScrollTrigger for .website-content
+        ScrollTrigger.create({
+          trigger: ".website-content",
+          start: "-0.1% top",
+          end: "bottom bottom",
+          onEnter: () => {
+            gsap.set(".website-content", { position: "absolute", top: "195%" });
+          },
+          onLeaveBack: () => {
+            gsap.set(".website-content", { position: "fixed", top: "0" });
+          },
+        });
+
+        // Animations for header letters
+        gsap.to(".header .letters:first-child", {
+          x: () => -innerWidth * 3,
+          scale: 10,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            start: "top top",
+            end: `+=200%`,
+            scrub: 1,
+          },
+        });
+
+        gsap.to(".header .letters:last-child", {
+          x: () => innerWidth * 3,
+          scale: 10,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            start: "top top",
+            end: `+=200%`,
+            scrub: 1,
+          },
+        });
+
+        // Other GSAP animations
+        gsap.to(".img-holder", {
+          rotation: 0,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          ease: "power2.inOut",
+          scrollTrigger: {
+            start: "top top",
+            end: "+=200%",
+            scrub: 1,
+          },
+        });
+
+        gsap.to(".img-holder img", {
+          scale: 1,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            start: "top top",
+            end: "+=200%",
+            scrub: 1,
+          },
+        });
+
+        // Slider setup
+        let currentIndex = 0;
+        const slider = document.querySelector(".card-slider");
+        const totalCards = document.querySelectorAll(".card").length;
+
+        function slideNext() {
+          currentIndex = (currentIndex + 1) % totalCards;
+          slider.style.transform = `translateX(-${currentIndex * 220}px)`;
+        }
+
+        function slidePrev() {
+          currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+          slider.style.transform = `translateX(-${currentIndex * 220}px)`;
+        }
+
+        // Set interval for automatic sliding (optional)
+        setInterval(slideNext, 3000);
+      });
+    </script>
+  </head>
+  <body>
+    <nav>
+      <div class="hero-section">
+        <img src="media/CalineFukuLogoWhite.png" alt="" />
+
+        <div class="menu-btn">
+          <ion-icon name="menu"></ion-icon>
+        </div>
+      </div>
+
+      <div class="menu">
+        <div class="close-menu">
+          <ion-icon name="close"></ion-icon>
+        </div>
+
+        <div class="nav-bar">
+          <ul class="main-menu">
+            <li class="main-menu-item">
+              <a href="index.html">Home</a>
+            </li>
+
+            <li class="main-menu-item">
+              <a href="about.html">About</a>
+            </li>
+
+            <li class="main-menu-item">
+              <a href="product.html">Our Products</a>
+            </li>
+
+            <li class="main-menu-item">
+              <a href="#">Contact &nbsp; <ion-icon name="add"></ion-icon></a>
+
+              <ul class="submenu">
+                <li class="submenu-item">
+                  <a href="#">Call now</a>
+                </li>
+                <li class="submenu-item">
+                  <a href="#">Mail us</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div class="contact">
+          <p class="mail">
+            <ion-icon name="logo-instagram"></ion-icon
+            >&nbsp;&nbsp;&nbsp;calinefuku
+          </p>
+        </div> -->
+      </div>
+    </nav>
+    <div class="header">
+      <div class="letters">
+        <div>e</div>
+        <div>l</div>
+        <div>e</div>
+      </div>
+      <div class="letters">
+        <div>g</div>
+        <div>a</div>
+        <div>n</div>
+      </div>
+    </div>
+      <div class="website-content">
+      <div class="img-holder">
+        <img src="media/fashionhd.jpg" alt="" />
+      </div>
+
+      <div class="content-holder">
+        <div class="logo-container">
+          <img src="media/CalineFukuLogoWhite.png" alt="Logo" />
+        </div>
+        <div id="container">
+          <div class="typewritter-effect">
+    <p id="typewriter-effect">
+    </p>
+    </div>
+</div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+      document.addEventListener("DOMContentLoaded", function () {
+        const contentHolderHeight =
+          document.querySelector(".content-holder").offsetHeight;
+        const imgHolderHeight = window.innerHeight;
+        const additionalScrollHeight = window.innerHeight;
+
+        const totalBodyHeight =
+          contentHolderHeight + imgHolderHeight + additionalScrollHeight;
+        document.body.style.height = `${totalBodyHeight}px`;
+      });
+
+      const endValue =
+        document.querySelector(".website-content").offsetHeight * 0.75;
+
+      ScrollTrigger.create({
+        trigger: ".website-content",
+        start: "-0.1% top",
+        end: "bottom bottom",
+        onEnter: () => {
+          gsap.set(".website-content", { position: "absolute", top: "195%" });
+        },
+        onLeaveBack: () => {
+          gsap.set(".website-content", { position: "fixed", top: "0" });
+        },
+      });
+
+      gsap.to(".header .letters:first-child", {
+        x: () => -innerWidth * 3,
+        scale: 10,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          start: "top top",
+          end: `+=200%`,
+          scrub: 1,
+        },
+      });
+
+      gsap.to(".header .letters:last-child", {
+        x: () => innerWidth * 3,
+        scale: 10,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          start: "top top",
+          end: `+=200%`,
+          scrub: 1,
+        },
+      });
+
+      gsap.to(".img-holder", {
+        rotation: 0,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "power2.inOut",
+        scrollTrigger: {
+          start: "top top",
+          end: "+=200%",
+          scrub: 1,
+        },
+      });
+
+      gsap.to(".img-holder img", {
+        scale: 1,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          start: "top top",
+          end: "+=200%",
+          scrub: 1,
+        },
+      });
+
+      let currentIndex = 0;
+      const slider = document.querySelector(".card-slider");
+      const totalCards = document.querySelectorAll(".card").length;
+
+      function slideNext() {
+        currentIndex = (currentIndex + 1) % totalCards;
+        slider.style.transform = `translateX(-${currentIndex * 220}px)`;
+      }
+
+      function slidePrev() {
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        slider.style.transform = `translateX(-${currentIndex * 220}px)`;
+      }
+
+      // Set interval untuk slide otomatis (opsional)
+      setInterval(slideNext, 3000);
+    </script>
+
+    <script type="text/javascript">
+      // Menggunakan event delegation untuk menangani semua klik pada tautan di dalam main menu
+      $("ul.main-menu").on("click", "li a", function (e) {
+        // Cek apakah tautan ini memiliki submenu
+        var $submenu = $(this).siblings("ul.submenu");
+
+        if ($submenu.length) {
+          // Jika ada submenu, toggle (buka/tutup) submenu tersebut
+          $submenu.slideToggle("normal");
+
+          // Hentikan event click agar tidak mengarahkan ke halaman lain
+          e.preventDefault();
+        }
+      });
+
+      // Animasi menu menggunakan TimelineMax
+      var t1 = new TimelineMax({ paused: true });
+
+      t1.to(".menu", 0.8, {
+        autoAlpha: 1,
+      });
+
+      t1.staggerFrom(
+        ".main-menu li a:not(.submenu li a)",
+        1,
+        {
+          opacity: 0,
+          y: 10,
+          ease: Power3.easeInOut,
+        },
+        0.1
+      );
+
+      t1.from(".submenu", 0.8, {
+        autoAlpha: 0,
+      });
+
+      t1.staggerFrom(
+        ".media ul li",
+        1,
+        {
+          opacity: 0,
+          y: 10,
+          ease: Power3.easeInOut,
+        },
+        0.1,
+        "-=2"
+      );
+
+      t1.from(".call", 1, {
+        delay: -2,
+        opacity: 0,
+        y: 10,
+        ease: Power3.easeInOut,
+      });
+
+      t1.from(".mail", 1, {
+        delay: -1.6,
+        opacity: 0,
+        y: 10,
+        ease: Power3.easeInOut,
+      });
+
+      t1.reverse();
+
+      // Toggle menu saat tombol menu ditekan
+      $(document).on("click", ".menu-btn", function () {
+        t1.reversed(!t1.reversed());
+      });
+
+      // Toggle menu saat tombol close-menu ditekan
+      $(document).on("click", ".close-menu", function () {
+        t1.reversed(!t1.reversed());
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll(".slide");
+        let currentSlideIndex = 0;
+        let isAnimating = false;
+        let currentTopValue = 0;
+
+        const elements = [
+          { selector: ".prefix", delay: 0 },
+          { selector: ".names", delay: 0.15 },
+          { selector: ".years", delay: 0.3 },
+        ];
+
+        slides.forEach((slide, idx) => {
+          if (idx !== 0) {
+            const img = slide.querySelector("img");
+            gsap.set(img, { scale: 2, top: "4em" });
+          }
+        });
+
+        function showSlide(index) {
+          if (isAnimating) return;
+          isAnimating = true;
+          const slide = slides[index];
+          const img = slide.querySelector("img");
+
+          currentTopValue -= 30;
+
+          elements.forEach((elem) => {
+            gsap.to(document.querySelector(elem.selector), {
+              y: `${currentTopValue}px`,
+              duration: 2,
+              ease: "power4.inOut",
+              delay: elem.delay,
+            });
+          });
+
+          gsap.to(img, {
+            scale: 1,
+            top: "0%",
+            duration: 2,
+            ease: "power3.inOut",
+          });
+          gsap.to(
+            slide,
+            {
+              clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+              duration: 2,
+              ease: "power4.inOut",
+              onComplete: () => {
+                isAnimating = false;
+              },
+            },
+            "<"
+          );
+        }
+
+        function hideSlide(index) {
+          if (isAnimating) return;
+          isAnimating = true;
+          const slide = slides[index];
+          const img = slide.querySelector("img");
+
+          currentTopValue += 30;
+          elements.forEach((elem) => {
+            gsap.to(document.querySelector(elem.selector), {
+              y: `${currentTopValue}px`,
+              duration: 2,
+              ease: "power4.inOut",
+              delay: elem.delay,
+            });
+          });
+
+          gsap.to(slide, {
+            clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+            duration: 2,
+            ease: "power4.inOut",
+          });
+
+          gsap.to(img, {
+            scale: 2,
+            top: "4em",
+            duration: 2,
+            ease: "power3.inOut",
+          });
+
+          gsap.to(
+            slide,
+            {
+              clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+              duration: 2,
+              ease: "power4.inOut",
+              onComplete: () => {
+                isAnimating = false;
+              },
+            },
+            "<"
+          );
+        }
+
+        window.addEventListener("wheel", (e) => {
+          if (isAnimating) return;
+          if (e.deltaY > 0 && currentSlideIndex < slides.length - 1) {
+            showSlide(currentSlideIndex + 1);
+            currentSlideIndex++;
+          } else if (e.deltaY < 0 && currentSlideIndex > 0) {
+            hideSlide(currentSlideIndex);
+            currentSlideIndex--;
+          }
+        });
+      });
+    </script>
+
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const textElement = document.getElementById('typewriter-effect');
+
+    const text = `CalineFuku shines brightly in the fashion landscape, specializing in custom shirts and hoodie jackets that capture the essence of Y2K style with a modern twist. Our pieces embody the belief that extraordinary design can be both stylish and affordable. At CalineFuku, we blend accessible pricing with trendsetting aesthetics, ensuring that each creation is a unique reflection of individuality and flair. We’re not just a brand; we’re a statement of accessible Y2K chic, making top-tier fashion effortlessly attainable.`;
+
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            let currentChar = text.charAt(i);
+            textElement.innerHTML += currentChar;
+            i++;
+            setTimeout(typeWriter, 30);
+        } else {
+            highlightBackground();
+        }
+    }
+
+    function highlightBackground() {
+        const beforeHighlight = `CalineFuku shines brightly in the fashion landscape, specializing in custom shirts and hoodie jackets that capture the essence of Y2K style with a modern twist. Our pieces embody the belief that extraordinary design can be both stylish and affordable. At CalineFuku, we blend accessible pricing with trendsetting aesthetics, ensuring that each creation is a unique reflection of individuality and flair. `;
+        const highlightText = `We’re not just a brand; we’re a statement of accessible Y2K chic, making top-tier fashion effortlessly attainable.`;
+
+        // Tambahkan spasi di akhir beforeHighlight untuk memastikan penyatuan yang rapi
+        textElement.innerHTML = beforeHighlight + `<span class="highlight">` + highlightText + `</span>`;
+
+        gsap.to(".highlight", {
+            backgroundSize: "100% 100%",
+            duration: 2,
+            ease: "power1.inOut",
+            onComplete: function() {
+                // Menambahkan padding untuk memastikan jarak yang sesuai jika diperlukan
+                textElement.style.padding = "0 5px";
+            }
+        });
+    }
+
+    typeWriter();
+});
+</script>
+
+
+
+  </body>
+</html>
